@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#260817">
+<meta name="description" content="Sevara uchun mehr, go'zal tilaklar va tabassumga to'la maxsus tug'ilgan kun sahifasi.">
+<title>Sevara uchun — Eng go'zal tilaklar ♥</title>
+<style>
+:root {
+  --bg:#190713;
+  --wine:#4b102b;
+  --pink:#ff83ad;
+  --rose:#ffb6cb;
+  --cream:#fff2f4;
+  --gold:#f8d99a;
+  --glass:rgba(255,239,246,.075);
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:
+    radial-gradient(ellipse at 15% 15%,#5b1537 0,transparent 40%),
+    radial-gradient(ellipse at 85% 45%,#39102d 0,transparent 38%),
+    linear-gradient(145deg,#160610,#2a0a1d 55%,#12040e);
+  color:var(--cream);
+  font-family:Georgia,"Times New Roman",serif;
+  overflow-x:hidden;
+}
+body::before {
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  opacity:.18;
+  background-image:radial-gradient(#fff 0.7px,transparent .7px);
+  background-size:29px 29px;
+}
+button { font:inherit; }
+button:focus-visible,a:focus-visible { outline:2px solid var(--gold);outline-offset:4px; }
+a { color:inherit; }
+#effects { position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5; }
+.particle {
+  position:absolute;top:-45px;left:var(--x);
+  color:var(--c);opacity:0;
+  font-size:var(--s);
+  animation:fall var(--d) linear forwards;
+  filter:drop-shadow(0 0 8px currentColor);
+}
+@keyframes fall {
+  0% { transform:translate3d(0,-5vh,0) rotate(0);opacity:0; }
+  10% { opacity:.85; }
+  85% { opacity:.75; }
+  100% { transform:translate3d(var(--drift),110vh,0) rotate(600deg);opacity:0; }
+}
+.wrap { width:min(1080px,92%);margin:auto;position:relative;z-index:1; }
+nav {
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:22px 0;
+}
+.brand { color:var(--rose);letter-spacing:3px;font-size:13px;text-transform:uppercase; }
+.nav-btn,.btn {
+  border:1px solid rgba(255,220,232,.28);
+  border-radius:100px;padding:12px 19px;
+  background:rgba(255,255,255,.06);color:white;
+  cursor:pointer;transition:.25s;
+}
+.nav-btn:hover,.btn:hover { transform:translateY(-3px);background:rgba(255,131,173,.17); }
+.hero {
+  min-height:83vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:58px 0 90px;position:relative;
+}
+.eyebrow {
+  color:var(--gold);text-transform:uppercase;letter-spacing:4px;
+  font:11px Arial,sans-serif;margin-bottom:24px;
+}
+h1 {
+  font-size:clamp(55px,11vw,118px);line-height:.94;
+  font-weight:normal;margin:0;
+  background:linear-gradient(110deg,#fff4f6,#ff91b7 42%,#f9dba1 76%,#fff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 8px 35px rgba(255,95,154,.16));
+}
+.hero-sub { color:#f6c8d8;font-size:clamp(17px,2.8vw,23px);line-height:1.8;margin:28px auto 30px;max-width:650px; }
+.hero-heart { font-size:27px;color:var(--pink);animation:pulse 1.8s infinite;display:inline-block; }
+@keyframes pulse { 50%{transform:scale(1.25);text-shadow:0 0 25px #ff72a6;} }
+.btn-primary {
+  background:linear-gradient(115deg,#f66e9e,#bd386b);
+  border:0;box-shadow:0 12px 38px #d53f7938;
+  color:#fff;padding:15px 25px;
+}
+.btn-primary:hover { background:linear-gradient(115deg,#ff8bb3,#d94b80); }
+.scroll-note { margin-top:35px;color:#d6a9bb;font:11px Arial,sans-serif;letter-spacing:2px; }
+section { padding:72px 0; }
+.section-kicker { text-align:center;color:var(--gold);font:11px Arial,sans-serif;letter-spacing:4px;text-transform:uppercase; }
+h2 { text-align:center;font-size:clamp(32px,6vw,54px);font-weight:normal;margin:15px 0 18px; }
+.section-intro { text-align:center;line-height:1.8;color:#e6bdcc;max-width:620px;margin:0 auto 36px; }
+.gallery {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px;
+}
+.photo-card {
+  padding:11px 11px 19px;background:linear-gradient(150deg,#fff2f2,#e8c4d0);
+  border-radius:5px;color:#57142f;
+  box-shadow:0 20px 55px #0004;transition:transform .35s;
+}
+.photo-card:nth-child(1){transform:rotate(-2deg);}
+.photo-card:nth-child(2){transform:translateY(17px) rotate(1deg);}
+.photo-card:nth-child(3){transform:rotate(2deg);}
+.photo-card:hover { transform:translateY(-8px) rotate(0) scale(1.025); }
+.photo-card img { width:100%;height:320px;object-fit:cover;display:block;background:#40142b; }
+.photo-caption { padding:17px 5px 0;text-align:center;font-size:17px; }
+.photo-caption small { display:block;font:10px Arial,sans-serif;letter-spacing:2px;margin-top:8px;color:#92536b; }
+.glass {
+  background:var(--glass);border:1px solid #ffffff18;
+  border-radius:24px;padding:clamp(24px,5vw,48px);
+  box-shadow:0 25px 80px #0002;backdrop-filter:blur(8px);
+}
+.letter-wrap { max-width:780px;margin:auto; }
+.letter-top { text-align:center;color:var(--gold);font-size:28px;margin-bottom:15px; }
+.letter-text { font-size:18px;line-height:2;color:#f9dfe8;white-space:pre-line; }
+.letter-text strong { color:#ffabc5;font-weight:normal; }
+.letter-sign { color:var(--gold);text-align:right;font-style:italic;font-size:20px;margin-top:24px; }
+.wish-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:15px; }
+.wish {
+  padding:24px 20px;border:1px solid #ffffff17;border-radius:18px;
+  background:linear-gradient(150deg,#ffffff0d,#ff8bb309);
+  text-align:center;transition:.25s;
+}
+.wish:hover { transform:translateY(-5px);border-color:#ff83ad75; }
+.wish .emoji { font-size:31px; }
+.wish h3 { font-size:20px;font-weight:normal;color:#ffc0d3;margin:15px 0 10px; }
+.wish p { color:#e5bdcb;font-size:15px;line-height:1.8;margin:0; }
+.surprise { text-align:center;position:relative;overflow:hidden; }
+.surprise p { color:#e9c3d1;line-height:1.9; }
+#bigWish { display:none;margin-top:28px;animation:appear .8s both; }
+#bigWish.show { display:block; }
+.big-wish-title { font-size:clamp(32px,7vw,66px);color:#ffb0c9;line-height:1.2; }
+.big-wish-copy { max-width:600px;margin:20px auto;color:#ffedf2!important; }
+@keyframes appear { from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none} }
+footer { text-align:center;padding:55px 0 40px;color:#c99bac;font-size:14px;line-height:2; }
+footer .footer-heart { color:var(--pink);font-size:22px; }
+#toast {
+  position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);
+  background:#fff0f5;color:#4b102b;padding:13px 21px;border-radius:50px;
+  z-index:10;opacity:0;pointer-events:none;transition:.3s;
+  box-shadow:0 8px 35px #0004;text-align:center;width:max-content;max-width:90%;
+}
+#toast.show { opacity:1;transform:translate(-50%,0); }
+.sparkle { color:var(--gold); }
+@media(max-width:700px) {
+  .gallery { grid-template-columns:1fr;gap:25px;max-width:390px;margin:auto; }
+  .photo-card:nth-child(n) { transform:none; }
+  .photo-card img { height:390px; }
+  .wish-grid { grid-template-columns:1fr; }
+  .hero { min-height:75vh;padding:40px 0 65px; }
+  nav { padding:16px 0; }
+  .brand { letter-spacing:1.5px;font-size:11px; }
+  .nav-btn { padding:10px 12px;font-size:12px; }
+  section { padding:55px 0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important; }
+}
+</style>
+</head>
+<body>
+<div id="effects" aria-hidden="true"></div>
+
+<div class="wrap">
+  <nav>
+    <div class="brand">✦ A special day for Sevara</div>
+    <button class="nav-btn" id="musicBtn" type="button">♫ Musiqa</button>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">✦ Bugun dunyo yanada go‘zal ✦</div>
+      <h1>Happy<br>Birthday,<br>Sevara<span class="hero-heart"> ♥</span></h1>
+      <p class="hero-sub">
+        Bugun oddiy kun emas. Bugun tabassumi atrofga nur ulashadigan
+        inson dunyoga kelgan kun. Bu kichik mo‘jiza — aynan sen uchun.
+      </p>
+      <button class="btn btn-primary" id="startBtn" type="button">Senga atalgan mo‘jizani och ✨</button>
+      <div class="scroll-note">PASTGA TUSH · SEN UCHUN TAYYORLANDI ↓</div>
+    </div>
+  </header>
+
+  <section id="memories">
+    <div class="section-kicker">♡ Eng go‘zal lahzalar</div>
+    <h2>Bir oz go‘zallik, bir olam xotira</h2>
+    <p class="section-intro">Ba’zi suratlar shunchaki surat emas — ular bir lahzaning butun go‘zalligini saqlab qoladi.</p>
+    <div class="gallery">
+      <article class="photo-card">
+        <img src="assets/images/sevara-1.jpg" alt="Sevaraning birinchi surati" loading="lazy">
+        <div class="photo-caption">Go‘zallik o‘ziga xos bo‘ladi <small>✦ ONE OF A KIND ✦</small></div>
+      </article>
+      <article class="photo-card">
+        <img src="assets/images/sevara-2.jpg" alt="Sevaraning ikkinchi surati" loading="lazy">
+        <div class="photo-caption">Tabassuming doim porlasin <small>✦ KEEP SMILING ✦</small></div>
+      </article>
+      <article class="photo-card">
+        <img src="assets/images/sevara-3.jpg" alt="Sevaraning uchinchi surati" loading="lazy">
+        <div class="photo-caption">Eng go‘zal kunlar oldinda <small>✦ THE BEST IS YET TO COME ✦</small></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="letter">
+    <div class="section-kicker">✉ Yurakdan chiqqan so‘zlar</div>
+    <h2>Senga bir maktub bor…</h2>
+    <div class="letter-wrap glass">
+      <div class="letter-top">💌</div>
+      <div class="letter-text">Aziz <strong>Sevara!</strong>
+
+Bugun sen uchun eng chiroyli tilaklar aytiladigan kun. Yangi yoshing hayotingdagi eng yorqin sahifalardan biriga aylansin.
+
+Senga shunday baxt tilaymanki, har tonging umid bilan boshlansin, har kuning quvonchli yangiliklar olib kelsin, har oqshoming esa ko‘nglingdagi xotirjamlik bilan yakunlansin.
+
+<strong>Orzularing</strong> hech qachon oddiy orzu bo‘lib qolmasin — birin-ketin ro‘yobga chiqsin. Qalbingdagi ezgu niyatlar yo‘lingni yoritib tursin. Seni qadrlaydigan, hurmat qiladigan va chin dildan quvonchingni istaydigan insonlar doimo yoningda bo‘lsin.
+
+Hayot senga eng chiroyli sabablar bilan kulishni, kichik narsalardan ham baxt topishni va o‘zingga bo‘lgan ishonchni hech qachon yo‘qotmaslikni o‘rgatsin.
+
+Bugun shamlarni o‘chirayotganda eng katta orzuingni tila. Kim biladi, balki hayot sen kutganingdan ham go‘zal sovg‘alar tayyorlab qo‘ygandir…
+
+<strong>Tug‘ilgan kuning muborak bo‘lsin!</strong> Yangi yoshing mehr, omad, sog‘lik, muvaffaqiyat va unutilmas lahzalarga to‘lsin. Doimo o‘zligingcha qol: samimiy, betakror va porloq. ♡</div>
+      <div class="letter-sign">Eng samimiy tilaklar bilan ♥</div>
+    </div>
+  </section>
+
+  <section id="wishes">
+    <div class="section-kicker">✧ Senga tilaklarim</div>
+    <h2>Yangi yoshingga 6 ta sovg‘a</h2>
+    <p class="section-intro">Bular qutiga sig‘maydigan, lekin hayotni yanada go‘zal qiladigan sovg‘alar.</p>
+    <div class="wish-grid">
+      <article class="wish"><div class="emoji">🌷</div><h3>Cheksiz baxt</h3><p>Yuzingdan tabassum, qalbingdan xotirjamlik, hayotingdan baxt hech qachon arimasin.</p></article>
+      <article class="wish"><div class="emoji">✨</div><h3>Ulkan orzular</h3><p>Ko‘ngling istagan marralarga yet. Bugungi orzularing ertangi faxringga aylansin.</p></article>
+      <article class="wish"><div class="emoji">💎</div><h3>Betakror omad</h3><p>Har bir yangi imkoniyat seni muvaffaqiyat sari yetaklasin, mehnating o‘z samarasini bersin.</p></article>
+      <article class="wish"><div class="emoji">🕊️</div><h3>Tinch qalb</h3><p>Ko‘ngling doim osoyishta bo‘lsin. Hayotdagi eng qiyin kunlar ham ortda qolsin.</p></article>
+      <article class="wish"><div class="emoji">🌍</div><h3>Go‘zal sayohatlar</h3><p>Ko‘rishni istagan joylaringni ko‘r, yangi taassurotlar to‘pla va unutilmas xotiralar yarat.</p></article>
+      <article class="wish"><div class="emoji">❤️</div><h3>Chin mehr</h3><p>Atrofingda seni qadrlaydigan insonlar, samimiy do‘stlik va mehrga to‘la lahzalar ko‘p bo‘lsin.</p></article>
+    </div>
+  </section>
+
+  <section id="surprise">
+    <div class="glass surprise">
+      <div class="section-kicker">🎁 Oxirgi bir kichik sovg‘a</div>
+      <h2>Hali hammasi tugamadi…</h2>
+      <p>Bir tugma. Minglab tilaklar. Va faqat sen uchun tayyorlangan bayramona lahza.</p>
+      <button class="btn btn-primary" id="surpriseBtn" type="button">🎉 Mo‘jizani och!</button>
+      <div id="bigWish" aria-live="polite">
+        <div class="big-wish-title">SEVARA, SEN AJOYIBSAN! ♥</div>
+        <p class="big-wish-copy">Yangi yoshing eng chiroyli hikoyangning boshlanishi bo‘lsin. Ko‘zlaring doim quvonchdan porlasin, qalbingdagi orzular qanot yozsin va hayoting kutilmagan go‘zal mo‘jizalarga to‘lsin!</p>
+        <div style="font-size:38px" aria-hidden="true">🌹 🎈 ✨ 💗 🎈 🌹</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-heart">♥</div>
+    <div>Bu sahifa senga yaxshi kayfiyat ulashish uchun yaratildi.</div>
+    <div class="sparkle">Sevara uchun — eng samimiy tilaklar bilan ✨</div>
+  </footer>
+</div>
+
+<div id="toast" role="status"></div>
+
+<script>
+(() => {
+  const effects = document.getElementById('effects');
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  let musicOn = false;
+  let audioContext;
+  let musicTimer;
+  let noteIndex = 0;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const symbols = ['🌹','♥','♡','✧','🌸','💗'];
+  const colors = ['#ff8db5','#ffd4e2','#f8d99a','#ff547f','#fff0f5'];
+
+  function particle(symbol, x) {
+    const el = document.createElement('span');
+    el.className = 'particle';
+    el.textContent = symbol || symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.setProperty('--x', (x ?? Math.random()*100) + '%');
+    el.style.setProperty('--c', colors[Math.floor(Math.random()*colors.length)]);
+    el.style.setProperty('--s', (14 + Math.random()*22) + 'px');
+    el.style.setProperty('--d', (7 + Math.random()*7) + 's');
+    el.style.setProperty('--drift', ((Math.random()-.5)*220) + 'px');
+    effects.appendChild(el);
+    window.setTimeout(() => el.remove(), 15000);
+  }
+
+  if (!reducedMotion) {
+    window.setInterval(() => {
+      if (effects.childElementCount < 36) particle();
+    }, 650);
+  }
+
+  function confetti() {
+    for (let i=0; i<70; i++) {
+      window.setTimeout(() => {
+        const symbols2 = ['🎈','💗','🌹','✨','♥','🌸'];
+        particle(symbols2[Math.floor(Math.random()*symbols2.length)], Math.random()*100);
+      }, i*35);
+    }
+  }
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => toast.classList.remove('show'), 2800);
+  }
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    document.getElementById('memories').scrollIntoView({behavior:reducedMotion?'auto':'smooth'});
+    confetti();
+    showToast('Bu go‘zal kun senga ataldi, Sevara! ♥');
+  });
+
+  document.getElementById('surpriseBtn').addEventListener('click', () => {
+    const wish = document.getElementById('bigWish');
+    wish.classList.add('show');
+    confetti();
+    showToast('Tug‘ilgan kuning muborak bo‘lsin! 🎂');
+    wish.scrollIntoView({behavior:reducedMotion?'auto':'smooth',block:'nearest'});
+  });
+
+  // Web Audio API: tashqi audio faylisiz yaratiladigan oddiy mayin kuy.
+  // Musiqa faqat foydalanuvchi tugmani bosganda ishga tushadi.
+  function playNote() {
+    if (!audioContext || !musicOn) return;
+    const notes = [261.63,329.63,392.00,329.63,293.66,349.23,440.00,392.00];
+    const osc = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = notes[noteIndex++ % notes.length];
+    gain.gain.setValueAtTime(0.0001,audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.045,audioContext.currentTime+0.08);
+    gain.gain.exponentialRampToValueAtTime(0.0001,audioContext.currentTime+0.8);
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+    osc.start();
+    osc.stop(audioContext.currentTime+0.85);
+  }
+
+  document.getElementById('musicBtn').addEventListener('click', async () => {
+    try {
+      if (!audioContext) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) {
+          showToast('Brauzering audio funksiyasini qo‘llab-quvvatlamaydi.');
+          return;
+        }
+        audioContext = new AudioCtx();
+      }
+      if (audioContext.state === 'suspended') await audioContext.resume();
+      musicOn = !musicOn;
+      document.getElementById('musicBtn').textContent = musicOn ? '♫ Musiqa: ON' : '♫ Musiqa';
+      if (musicOn) {
+        playNote();
+        musicTimer = window.setInterval(playNote, 620);
+        showToast('Mayin musiqa yoqildi ♫');
+      } else {
+        clearInterval(musicTimer);
+        showToast('Musiqa to‘xtatildi');
+      }
+    } catch (error) {
+      showToast('Audio hozir ishga tushmadi. Qayta urinib ko‘r.');
+    }
+  });
+})();
+</script>
+</body>
+</html>
